@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Projects — Soketal Designs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="project.js" defer></script>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-head">
+      <img src="images/main.png" class="logo">
+      <h2 class="brand-name">Soketal Designs</h2>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="projects.html" class="nav-link active">Projects</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="menu-overlay" onclick="toggleMenu()"></div>
+  </nav>
+
+  <section class="projects-page">
+    <h1 class="title">My Designs <i class="fa-solid fa-heart"></i></h1>
+
+    <div class="filter-buttons">
+      <button onclick="filterProjects('all')" class="active-filter">All</button>
+      <button onclick="filterProjects('graphics')">Flyers</button>
+      <button onclick="filterProjects('web')">Posters</button>
+      <button onclick="filterProjects('uiux')">Logos</button>
+      <button onclick="filterProjects('frontend')">Anime Art</button>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- FLYERS -->
+      <div class="project-card graphics" onclick="openModal('images/Henna.png')">
+        <img src="images/Henna.png" alt="Henna Flyer">
+        <h3>Henna Flyer</h3>
+      </div>
+      <div class="project-card graphics" onclick="openModal('images/bakery.png')">
+        <img src="images/bakery.png" alt="Bakery Flyer">
+        <h3>Bakery Flyer</h3>
+      </div>
+      <div class="project-card graphics" onclick="openModal('images/seam.png')">
+        <img src="images/seam.png" alt="Seam Design">
+        <h3>Seam Design</h3>
+      </div>
+      <div class="project-card graphics" onclick="openModal('images/burger.png')">
+        <img src="images/burger.png" alt="Burger Flyer">
+        <h3>Burger Flyer</h3>
+      </div>
+      <div class="project-card graphics" onclick="openModal('images/make up.png')">
+        <img src="images/make up.png" alt="Make-up Flyer">
+        <h3>Make-up Flyer</h3>
+      </div>
+      <div class="project-card graphics" onclick="openModal('images/makk.png')">
+        <img src="images/makk.png" alt="Makk Flyer">
+        <h3>Makk Flyer</h3>
+      </div>
+
+      <!-- POSTERS -->
+      <div class="project-card web" onclick="openModal('images/pizza.png')">
+        <img src="images/pizza.png" alt="Pizza Poster">
+        <h3>Pizza Poster</h3>
+      </div>
+      <div class="project-card web" onclick="openModal('images/davido.png')">
+        <img src="images/davido.png" alt="Davido Poster">
+        <h3>Davido Poster</h3>
+      </div>
+      <div class="project-card web" onclick="openModal('images/bigwiz.png')">
+        <img src="images/bigwiz.png" alt="WizKid Poster">
+        <h3>WizKid Poster</h3>
+      </div>
+
+      <!-- LOGOS -->
+      <div class="project-card uiux" onclick="openModal('images/logo.png')">
+        <img src="images/logo.png" alt="Logo Design">
+        <h3>Logo Design</h3>
+      </div>
+      <div class="project-card uiux" onclick="openModal('images/henna-logo.png')">
+        <img src="images/henna-logo.png" alt="Henna Logo">
+        <h3>Henna Logo</h3>
+      </div>
+      <div class="project-card uiux" onclick="openModal('images/sophie.png')">
+        <img src="images/sophie.png" alt="Wig Logo">
+        <h3>Wig Logo</h3>
+      </div>
+
+      <!-- ANIME ART -->
+      <div class="project-card frontend" onclick="openModal('images/rudo.png')">
+        <img src="images/rudo.png" alt="Rudo Art">
+        <h3>Rudo Art</h3>
+      </div>
+      <div class="project-card frontend" onclick="openModal('images/Zanka.png')">
+        <img src="images/Zanka.png" alt="Zanka Art">
+        <h3>Zanka Art</h3>
+      </div>
+      <div class="project-card frontend" onclick="openModal('images/toga.png')">
+        <img src="images/toga.png" alt="Toga Art">
+        <h3>Toga Art</h3>
+      </div>
+      <div class="project-card frontend" onclick="openModal('images/sasuke.png')">
+        <img src="images/sasuke.png" alt="Sasuke Art">
+        <h3>Sasuke Art</h3>
+      </div>
+      <div class="project-card frontend" onclick="openModal('images/Amo.png')">
+        <img src="images/Amo.png" alt="Amo Art">
+        <h3>Amo Art</h3>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Image Modal -->
+  <div id="projectModal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImage" alt="Project preview">
+  </div>
+
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+</body>
+</html>

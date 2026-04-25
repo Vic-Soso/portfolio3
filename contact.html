@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Soketal Designs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-head">
+      <img src="images/main.png" class="logo">
+      <h2 class="brand-name">Soketal Designs</h2>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="contact.html" class="nav-link active">Contact</a></li>
+    </ul>
+    <div class="menu-overlay" onclick="toggleMenu()"></div>
+  </nav>
+
+  <section class="contact">
+    <div class="contact-header">
+      <h1>Contact Me <i class="fa-solid fa-envelope"></i></h1>
+    </div>
+
+    <form id="contact-form">
+      <div class="input-group">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" id="name" placeholder="Your Name" required>
+      </div>
+      <div class="input-group">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" id="email" placeholder="Your Email" required>
+      </div>
+      <div class="input-group">
+        <i class="fa-solid fa-comment"></i>
+        <textarea id="message" placeholder="Message"></textarea>
+      </div>
+      <button type="submit">Send <i class="fa-solid fa-star"></i></button>
+    </form>
+
+<div class="contact-socials">
+  <a href="https://www.linkedin.com/in/soso-amachree-96b3633b4" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-linkedin"></i>
+  </a>
+  <a href="https://github.com/Vic-Soso" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-github"></i>
+  </a>
+  <a href="https://wa.link/2cxyr1" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+  <a href="https://www.instagram.com/soketaldesigns" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-instagram"></i>
+  </a>
+  <a href="https://www.tiktok.com/@soketaldesigns" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-tiktok"></i>
+  </a>
+</div>
+  </section>
+
+  <!-- Success/Error Modal -->
+  <div id="luxury-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="checkmark">✔</div>
+      <h2 id="modal-title">Success</h2>
+      <p id="modal-message">Your message has been sent!</p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+
+
+  <script>
+    (function () { emailjs.init("CfuyOPJ2M49EGonAC"); })();
+
+    document.getElementById("contact-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      emailjs.send("service_u6abbym", "template_ymg1gbf", {
+        from_name: document.getElementById("name").value,
+        from_email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+      }).then(() => {
+        showModal("Success ✨", "Your message has been sent 💖");
+        this.reset();
+      }, (error) => {
+        showModal("Failed", "Couldn't send message: " + (error.text || "Please try again."));
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@500&display=swap');
+
+/* ========================= RESET ========================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+/* ========================= BODY ========================= */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0f0f14;
+  color: white;
+  overflow-x: hidden;
+}
+@media (pointer: fine) { body { cursor: none; } }
+
+/* ========================= NAVBAR ========================= */
+nav {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 25px 60px;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 15, 20, 0.6);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 1000;
+  transition: all 0.4s ease;
+}
+nav.scrolled {
+  padding: 15px 60px;
+  background: rgba(15, 15, 20, 0.85);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* ========================= NAV LINKS ========================= */
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-link {
+  position: relative; text-decoration: none;
+  color: white; font-weight: 500; transition: 0.3s;
+}
+.nav-link:hover, .nav-link.active { color: #ff4fd8; }
+.nav-link::after {
+  content: ""; position: absolute; left: 0; bottom: -6px;
+  width: 0%; height: 2px;
+  background: linear-gradient(90deg, #ff4fd8, #ff9cf5);
+  transition: width 0.4s ease;
+}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+/* ========================= NAV HEAD ========================= */
+.nav-head { display: flex; align-items: center; gap: 12px; cursor: pointer; z-index: 1001; }
+.logo { width: 45px; height: 45px; object-fit: cover; border-radius: 50%; transition: 0.4s ease; }
+.brand-name { font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 1px; transition: 0.3s; }
+.nav-head:hover .logo { transform: rotate(10deg) scale(1.1); box-shadow: 0 0 20px #ff4fd8; }
+.nav-head:hover .brand-name { color: #ff4fd8; }
+
+/* ========================= HAMBURGER ========================= */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; padding: 5px; }
+.hamburger span { display: block; width: 25px; height: 2px; background: white; border-radius: 2px; transition: all 0.3s ease; }
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ========================= MENU OVERLAY ========================= */
+.menu-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  opacity: 0; visibility: hidden; transition: 0.3s; z-index: 998;
+}
+.menu-overlay.active { opacity: 1; visibility: visible; }
+
+/* ========================= HERO ========================= */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  justify-content: center; text-align: center;
+  position: relative; padding: 100px 20px 40px;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero h1, .hero-title {
+  font-size: clamp(32px, 6vw, 60px);
+  font-family: 'Playfair Display', serif; line-height: 1.2;
+}
+.hero p, .hero-text { margin-top: 20px; font-size: clamp(14px, 2vw, 18px); color: #bbb; }
+.highlight { color: #ff4fd8; }
+
+/* ========================= BUTTON ========================= */
+.btn {
+  display: inline-block; margin-top: 30px; padding: 14px 30px;
+  border-radius: 30px; background: linear-gradient(45deg, #ff4fd8, #ff9cf5);
+  color: white; text-decoration: none; font-weight: 500; transition: 0.4s;
+}
+.btn:hover { transform: scale(1.1); box-shadow: 0 0 25px #ff4fd8; }
+.btn i { margin-left: 8px; transition: 0.3s; }
+.btn:hover i { transform: translateX(5px); }
+
+/* ========================= GLOW ========================= */
+.glow {
+  position: absolute; width: 400px; height: 400px;
+  background: #ff4fd8; filter: blur(150px);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  opacity: 0.3; pointer-events: none;
+}
+
+/* ========================= CURSOR ========================= */
+.cursor {
+  position: fixed; width: 6px; height: 6px; background: #ff4fd8;
+  border-radius: 50%; pointer-events: none; z-index: 9998;
+  transform: translate(-50%, -50%);
+}
+.cursor-follower {
+  position: fixed; width: 30px; height: 30px;
+  border: 1px solid #ff4fd8; border-radius: 50%;
+  pointer-events: none; z-index: 9997; transform: translate(-50%, -50%);
+}
+@media (pointer: coarse) { .cursor, .cursor-follower { display: none; } }
+
+/* ========================= PROJECT MODAL ========================= */
+#projectModal {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.9); z-index: 10000;
+  justify-content: center; align-items: center;
+}
+#modalImage { max-width: 90%; max-height: 90vh; border-radius: 20px; box-shadow: 0 0 40px #ff4fd8; }
+.close {
+  position: absolute; top: 20px; right: 30px;
+  font-size: 40px; color: white; cursor: pointer;
+  z-index: 10001; line-height: 1; transition: color 0.2s;
+}
+.close:hover { color: #ff4fd8; }
+
+/* ========================= PROJECTS PAGE ========================= */
+.projects-page { padding: 120px 5% 60px; text-align: center; }
+.title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 48px); margin-bottom: 30px; }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+.project-card {
+  background: #1a1a24; padding: 16px; border-radius: 20px;
+  cursor: pointer; transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.project-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px; display: block; }
+.project-card h3 { margin-top: 10px; font-size: 14px; font-weight: 500; color: #ddd; }
+.project-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 0 25px #FF4FA3; }
+
+/* hide blobs from inside the grid */
+.blob1, .blob2, .blob3 { display: none; }
+
+/* ========================= FILTER BUTTONS ========================= */
+.filter-buttons { margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.filter-buttons button {
+  padding: 10px 22px; border: none; border-radius: 20px;
+  background: #1f1f2e; color: white; cursor: pointer;
+  font-family: 'Poppins', sans-serif; font-size: 14px; transition: 0.3s;
+}
+.filter-buttons button:hover, .filter-buttons button.active-filter {
+  background: #ff4fd8; box-shadow: 0 0 15px #ff4fd8;
+}
+
+/* ========================= ABOUT ========================= */
+.about { text-align: center; padding: 140px 20px 60px; max-width: 600px; margin: auto; }
+.about h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 42px); margin-bottom: 20px; }
+.about p { color: #bbb; line-height: 1.8; font-size: clamp(14px, 2vw, 16px); }
+.profile { width: 160px; height: 160px; object-fit: cover; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(255, 77, 166, 0.3); }
+
+/* ========================= CONTACT ========================= */
+.contact { max-width: 520px; margin: 0 auto; text-align: center; padding: 140px 20px 60px; }
+.contact-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 42px); margin-bottom: 30px; }
+form {
+  width: 100%; display: flex; flex-direction: column; gap: 15px;
+  padding: 35px 30px; border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 79, 216, 0.3);
+  background: #14141e; border: 1px solid rgba(255, 79, 216, 0.15);
+}
+.input-group {
+  display: flex; align-items: center; gap: 10px;
+  background: #1f1f2e; padding: 12px 15px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06); transition: border-color 0.3s;
+}
+.input-group:focus-within { border-color: rgba(255, 79, 216, 0.5); }
+.input-group i { color: #ff4fd8; min-width: 16px; }
+input, textarea {
+  background: none; border: none; color: white;
+  font-family: 'Poppins', sans-serif; font-size: 14px; width: 100%; outline: none;
+}
+textarea { min-height: 100px; resize: vertical; }
+input::placeholder, textarea::placeholder { color: #666; }
+form button[type="submit"] {
+  padding: 12px 30px; border: none; border-radius: 20px;
+  background: linear-gradient(45deg, #ff4fd8, #ff9cf5);
+  color: white; font-family: 'Poppins', sans-serif;
+  font-weight: 600; font-size: 15px; cursor: pointer; transition: 0.3s;
+}
+form button[type="submit"]:hover { transform: scale(1.05); box-shadow: 0 0 20px #ff4fd8; }
+
+/* ========================= SOCIALS ========================= */
+.contact-socials { margin-top: 25px; display: flex; justify-content: center; flex-wrap: wrap; gap: 5px; }
+.contact-socials i { font-size: 22px; margin: 10px; cursor: pointer; transition: 0.3s; color: #bbb; }
+.contact-socials i:hover { transform: scale(1.2); color: #ff4fd8; }
+
+/* ========================= LUXURY MODAL (CONTACT) ========================= */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85); z-index: 10000;
+  justify-content: center; align-items: center;
+}
+.modal-overlay.show { display: flex; }
+.modal-box {
+  background: #1a1a24; border: 1px solid rgba(255,79,216,0.3);
+  border-radius: 20px; padding: 40px 50px; text-align: center;
+  max-width: 380px; width: 90%; box-shadow: 0 0 40px rgba(255,79,216,0.2);
+}
+.checkmark { font-size: 40px; color: #ff4fd8; margin-bottom: 15px; }
+.modal-box h2 { font-family: 'Playfair Display', serif; margin-bottom: 10px; }
+.modal-box p { color: #bbb; margin-bottom: 20px; }
+.modal-box button {
+  padding: 10px 25px; border: none; border-radius: 20px;
+  background: linear-gradient(45deg, #ff4fd8, #ff9cf5);
+  color: white; font-family: 'Poppins', sans-serif; cursor: pointer; font-weight: 500; transition: 0.3s;
+}
+.modal-box button:hover { transform: scale(1.05); box-shadow: 0 0 15px #ff4fd8; }
+
+/* ========================= SCROLL ANIMATION ========================= */
+.hidden { opacity: 0; transform: translateY(40px); transition: all 0.7s ease; }
+.show { opacity: 1; transform: translateY(0); }
+.contact-socials a {
+  color: #bbb;
+  transition: 0.3s;
+}
+.contact-socials a:hover {
+  color: #ff4fd8;
+  transform: scale(1.2);
+}
+.contact-socials i {
+  font-size: 22px;
+}
+
+/* ========================= MOBILE 768px ========================= */
+@media (max-width: 768px) {
+  nav { padding: 15px 20px; }
+  nav.scrolled { padding: 12px 20px; }
+  .hamburger { display: flex; }
+  .nav-links {
+    position: fixed; top: 0; right: -100%; height: 100vh;
+    width: 70%; max-width: 300px; background: #13131c;
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 30px; transition: right 0.4s ease; z-index: 999;
+    border-left: 1px solid rgba(255, 79, 216, 0.15);
+  }
+  .nav-links.active { right: 0; }
+  .nav-link { font-size: 18px; }
+  .brand-name { font-size: 17px; }
+  .logo { width: 36px; height: 36px; }
+  .projects-page { padding: 100px 4% 50px; }
+  .projects-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
+  .project-card img { height: 160px; }
+  .glow { width: 250px; height: 250px; }
+  form { padding: 25px 20px; }
+}
+
+/* ========================= MOBILE 480px ========================= */
+@media (max-width: 480px) {
+  .projects-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .project-card { padding: 10px; }
+  .project-card img { height: 130px; }
+  .filter-buttons button { padding: 8px 16px; font-size: 12px; }
+  .about { padding: 120px 15px 50px; }
+  .contact { padding: 120px 15px 50px; }
+}

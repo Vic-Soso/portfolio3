@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soketal Designs</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-head">
+      <img src="images/main.png" class="logo">
+      <h2 class="brand-name">Soketal Designs</h2>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link active">Home</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="menu-overlay" onclick="toggleMenu()"></div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="highlight">Creative</span><br>
+        Graphic Designer <i class="fa-solid fa-palette"></i>
+      </h1>
+      <p class="hero-text">I craft bold, feminine and visually stunning designs that stand out.</p>
+      <a href="projects.html" class="btn hero-btn">Explore My Work <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="glow"></div>
+  </section>
+
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+</body>
+</html>
